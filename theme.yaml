@@ -1,11 +1,11 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: howiehz-higan
+  name: yorafa
   annotations:
     store.halo.run/app-id: app-homxf
 spec:
-  displayName: 彼岸 - 皓改
+  displayName: yorafa
   author:
     name: HowieHz
     website: https://howiehz.top
@@ -14,8 +14,8 @@ spec:
   homepage: https://github.com/howiehz/halo-theme-higan-hz
   repo: https://github.com/howiehz/halo-theme-higan-hz.git
   issues: https://github.com/howiehz/halo-theme-higan-hz/issues
-  settingName: howiehz-higan-setting
-  configMapName: howiehz-higan-configmap
+  settingName: yroafa-setting
+  configMapName: yroafa-configmap
   version: 1.21.0
   requires: ">=2.1.0"
   license:

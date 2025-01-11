@@ -19,38 +19,28 @@
     </section>
 
     <p id="findMe" th:if="${not #arrays.isEmpty(theme?.config?.sns?.index_sns)}">
-      <th:block th:text="#{page.index.findMeLeftText}" th:if="${theme.config?.index_styles?.is_show_find_me_left_text}"
-        >社交资料图标左侧文字替换位</th:block
+      <th:block th:text="#{page.index.findMeLeftText}" th:if="${theme.config?.index_styles?.is_show_find_me_left_text}">
+        社交资料图标左侧文字替换位</th:block
       >
-      <th:block th:each="item : ${theme?.config?.sns?.index_sns}">
-        <th:block
-          th:if="${not #strings.equals(item?.type['type'], 'text')} and ${not #strings.equals(item?.type['type'], 'custom_sns')}"
+      <th:block th:with="sns=${theme?.config?.sns}">
+        <a
+          class="icon"
+          th:each="item : ${theme?.config?.sns?.index_sns}"
+          th:href="@{${item?.url}}"
+          target="_blank"
+          th:attr="aria-label=${item?.aria_label}"
+          ><i class="iconify iconify-middle" th:attr="data-icon=${item?.icon}"></i>
+        </a>
+        | RSS Feed:
+        <a
+          class="icon"
+          target="_blank"
+          th:href="@{${theme?.config?.rss?.rss_url}}"
+          aria-label="Find me on rss"
+          th:if="${theme?.config?.rss?.index_rss}"
         >
-          <a
-            class="icon"
-            th:href="@{${item?.type['url']}+${item?.input_value}}"
-            target="_blank"
-            th:attr="aria-label=${item?.type['aria-label']}"
-          >
-            <i class="iconify iconify-middle" th:attr="data-icon=${item?.type['data-icon']}"></i>
-          </a>
-        </th:block>
-        <th:block th:if="${#strings.equals(item?.type['type'], 'text')}">[(${item?.input_value})]</th:block>
-        <th:block th:if="${#strings.equals(item?.type['type'], 'custom_sns')}">
-          <th:block
-            th:each="custom_sns_item : ${theme?.config?.sns?.custom_sns}"
-            th:if="${item?.input_value == custom_sns_item?.id}"
-          >
-            <a
-              class="icon"
-              th:href="@{${custom_sns_item?.url}}"
-              target="_blank"
-              th:attr="aria-label=${custom_sns_item?.aria_label}"
-            >
-              <i class="iconify iconify-middle" th:attr="data-icon=${custom_sns_item?.icon}"></i>
-            </a>
-          </th:block>
-        </th:block>
+          <i class="iconify iconify-middle" data-icon="heroicons-outline:rss"></i>
+        </a>
       </th:block>
     </p>
 
